@@ -2416,7 +2416,10 @@ const lunarBiz = {
           return;
         }
 
-        const match = value.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
+        // 仅保留日期部分，忽略时间
+        const dateValue = value.split(/[ T]/)[0];
+
+        const match = dateValue.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
         if (!match) {
           if (typeof showToast === 'function') {
             showToast('日期格式需为 YYYY-MM-DD', 'warning');
